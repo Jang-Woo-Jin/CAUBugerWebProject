@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import redirect
 
-from .forms import ContactForm
 from .models import User, Menu, Seat, Order, Notice
 
 #Main Page
