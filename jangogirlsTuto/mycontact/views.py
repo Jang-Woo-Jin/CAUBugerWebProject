@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import redirect
 
 from .models import User, Menu, Seat, Order, Notice
-from .forms import LoginForm
+from .forms import LoginForm, SignupForm, SearchPWForm, ChangePWForm
 
 #Main Page
 def index(request):
@@ -47,9 +47,8 @@ def notice(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Insert Page
+#Login Page
 def login(request):
-    #new form
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -67,27 +66,51 @@ def login(request):
 
 #Signup Page
 def signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = SignupForm()
+
     template = loader.get_template('mycontact/signup.html')
-    contacts = User.objects.order_by('pk')
     context = {
-        'contacts' : contacts
+        'form' : form
     }
     return HttpResponse(template.render(context, request))
 
 #Search PW Page
 def searchpw(request):
+    if request.method == "POST":
+        form = SearchPWForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = SearchPWForm()
+
     template = loader.get_template('mycontact/searchpw.html')
-    contacts = User.objects.order_by('pk')
     context = {
-        'contacts' : contacts
+        'form' : form
     }
     return HttpResponse(template.render(context, request))
 
 #Change PW Page
 def changepw(request):
+    if request.method == "POST":
+        form = ChangePWForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = ChangePWForm()
+
     template = loader.get_template('mycontact/changepw.html')
-    contacts = User.objects.order_by('pk')
     context = {
-        'contacts' : contacts
+        'form' : form
     }
     return HttpResponse(template.render(context, request))
