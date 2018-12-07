@@ -1,0 +1,14 @@
+{% extends 'mycontact/base.html' %}
+
+{% block content %}
+    <li class="contact">
+        {% if contact.published_date %}
+            <div class="date">
+                {{ contact.published_date }}
+            </div>
+        {% endif %}
+        <a class="btn btn-default" href="{% url 'contact_edit' pk=contact.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <h1>{{ contact.title }}</h1>
+        <p>{{ contact.text|linebreaksbr }}</p>
+    </li>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'wjcontact/base.html' %}
+
+{% block content %}
+    <div class="contact">
+        <div>
+        {% if contact.created_date %}
+            <p class="date">{{ contact.created_date }}</p>
+        {% endif %}
+        </div>
+        <p>Author : {{ contact.author }}</p>
+        <p>Name : {{ contact.name }}</p>
+        <p>Phone number : {{contact.phone_number}}</p>
+        <p>E-mail address : {{contact.e_mail_address}}</p>
+        <p>Detail : {{ contact.detail|linebreaksbr }}</p>
+        <a class="edit btn btn-default" href="{% url 'wjcontact_edit' pk=contact.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+{% endblock %}
