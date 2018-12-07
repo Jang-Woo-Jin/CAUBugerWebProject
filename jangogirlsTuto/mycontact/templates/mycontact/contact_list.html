@@ -1,0 +1,13 @@
+{% extends 'mycontact/base.html' %}
+
+{% block content %}
+    {% for contact in contacts %}
+        <div class="contact">
+            <div class="date">
+                <p>published: {{ contact.published_date }}</p>
+            </div>
+            <h1><a href="{% url 'contact_detail' pk=contact.pk %}">{{ contact.title }}</a></h1>
+            <p>{{ contact.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock%}    
