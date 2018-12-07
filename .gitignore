@@ -7,7 +7,8 @@ reated by https://www.gitignore.io/api/git,code,venv,django,python
 .vscode/
 tsconfig.json
 jsconfig.json
-
+## DB Sqlite
+db.splite3
 ### Django ###
 *.log
 *.pot
@@ -113,6 +114,7 @@ env/
 venv/
 myvenv/
 ENV/
+migrations/
 env.bak/
 venv.bak/
 

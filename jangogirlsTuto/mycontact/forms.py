@@ -1,9 +1,9 @@
 from django import forms
 
-from .models import Contact, MyContact
+from .models import User
 
-class ContactForm(forms.ModelForm):
+class LoginForm(forms.ModelForm):
 
     class Meta:
-        model = Contact
-        fields = ('title', 'text',)
+        model = User
+        fields = ('userId', 'userPw', 'userName')

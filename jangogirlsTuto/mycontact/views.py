@@ -3,6 +3,7 @@ from django.template import loader
 from django.shortcuts import redirect
 
 from .models import User, Menu, Seat, Order, Notice
+from .forms import LoginForm
 
 #Main Page
 def index(request):
@@ -46,12 +47,21 @@ def notice(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Login Page
+#Insert Page
 def login(request):
+    #new form
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = LoginForm()
+
     template = loader.get_template('mycontact/login.html')
-    contacts = User.objects.order_by('pk')
     context = {
-        'contacts' : contacts
+        'form' : form
     }
     return HttpResponse(template.render(context, request))
 
