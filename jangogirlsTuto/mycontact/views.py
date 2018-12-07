@@ -1,42 +1,84 @@
-from django.shortcuts import render, redirect
-from django.utils import timezone
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.template import loader
+from django.shortcuts import redirect
 
 from .forms import ContactForm
-from .models import Contact, MyContact
+from .models import User, Menu, Seat, Order, Notice
 
-# Create your views here.
-def contact_list(request):
-    contacts = Contact.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-    return render(request, 'mycontact/contact_list.html', {'contacts':contacts})
+#Main Page
+def index(request):
+    template = loader.get_template('mycontact/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
-def contact_detail(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
-    return render(request, 'mycontact/contact_detail.html', {'contact': contact})
+#Introduction Page
+def introduction(request):
+    template = loader.get_template('mycontact/introduction.html')
+    contacts = Menu.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
 
-def contact_new(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            contact = form.save(commit=False)
-            contact.author = request.user
-            contact.published_date = timezone.now()
-            contact.save()
-            return redirect('contact_detail', pk=contact.pk)
-    else:
-        form = ContactForm()
-    return render(request, 'mycontact/contact_edit.html', {'form': form})    
+#Order Page
+def order(request):
+    template = loader.get_template('mycontact/order.html')
+    contacts = Order.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
 
-def contact_edit(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
-    if request.method == "POST":
-        form = ContactForm(instance=contact)
-        if form.is_valid():
-            contact = form.save(commit=False)
-            contact.author = request.user
-            contact.published_date = timezone.now()
-            contact.save()
-            return redirect('contact_detail', pk=contact.pk)
-    else:
-        form = ContactForm(instance=contact)
-    return render(request, 'mycontact/contact_edit.html', {'form': form})
+#Seat Page
+def seats(request):
+    template = loader.get_template('mycontact/seats.html')
+    contacts = Seat.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
+
+#Notice Page
+def notice(request):
+    template = loader.get_template('mycontact/notice.html')
+    contacts = Notice.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
+
+#Login Page
+def login(request):
+    template = loader.get_template('mycontact/login.html')
+    contacts = User.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
+
+#Signup Page
+def signup(request):
+    template = loader.get_template('mycontact/signup.html')
+    contacts = User.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
+
+#Search PW Page
+def searchpw(request):
+    template = loader.get_template('mycontact/searchpw.html')
+    contacts = User.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
+
+#Change PW Page
+def changepw(request):
+    template = loader.get_template('mycontact/changepw.html')
+    contacts = User.objects.order_by('pk')
+    context = {
+        'contacts' : contacts
+    }
+    return HttpResponse(template.render(context, request))
