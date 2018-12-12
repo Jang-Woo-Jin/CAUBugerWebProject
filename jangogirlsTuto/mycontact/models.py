@@ -22,8 +22,9 @@ class Menu(models.Model):
         return self.menuName
 
 class Seat(models.Model):
-    seatNo = models.CharField(max_length=200, primary_key=True)
+    seatNo = models.IntegerField(primary_key=True)
     isFull = models.BooleanField()
+    isReal = models.BooleanField()
 
     def publish(self):
         self.save()

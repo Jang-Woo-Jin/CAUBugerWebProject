@@ -20,27 +20,54 @@ def index(request):
 #Introduction Page
 def introduction(request):
     template = loader.get_template('mycontact/introduction.html')
-    contacts = Menu.objects.order_by('pk')
+    menus = Menu.objects.order_by('menuName')
+    menuTemplate = list()
+    row = list()
+    count = 0
+    for i in range(0,23):
+        if count == 0:
+            row = list()
+            row.append(menus[i])
+        elif count < 5:
+            row.append(menus[i])
+        count = count + 1
+        if count == 5:
+            menuTemplate.append(row)
+            count = 0
+    menuTemplate.append(row)
     context = {
-        'contacts' : contacts
+        'menus' : menuTemplate
     }
     return HttpResponse(template.render(context, request))
 
 #Order Page
 def order(request):
     template = loader.get_template('mycontact/order.html')
-    contacts = Order.objects.order_by('pk')
+    orders = Order.objects.order_by('orderId')
     context = {
-        'contacts' : contacts
+        'orders' : orders
     }
     return HttpResponse(template.render(context, request))
 
 #Seat Page
 def seats(request):
     template = loader.get_template('mycontact/seats.html')
-    contacts = Seat.objects.order_by('pk')
+    seats = Seat.objects.order_by('seatNo')
+    seatsTemplate = list()
+    row = list()
+    count = 0 
+    for i in range(0,56):
+        if count == 0:
+            row = list()
+            row.append(seats[i])
+        elif count < 8:
+            row.append(seats[i])
+        count = count + 1
+        if count == 8:
+            seatsTemplate.append(row)
+            count = 0
     context = {
-        'contacts' : contacts
+        'seats' : seatsTemplate
     }
     return HttpResponse(template.render(context, request))
 

@@ -1,0 +1,39 @@
+{% block content %}
+<style>
+    table {
+        border: 1px solid #444444;
+        margin-left:3px;
+        margin-right:1px;
+    }
+    td {
+        width:40px;
+        text-align: center;
+    }
+    #content {
+        border: 2px solid #444444;
+        width:362px;
+    }
+</style>
+
+<div id="content">
+    <table style="table-layout:fixed">
+        {% for rows in seats %}
+        <tr>
+            {% for seat in rows %}
+            {% if seat.isReal %}
+                {% if seat.isFull %}
+                    <td  bgcolor="#FF0000">{{ seat.seatNo }}</td>
+                {% else %}
+                    <td  bgcolor="#00FF00">{{ seat.seatNo }}</td> 
+                {% endif %}
+            {% else %}
+                <td></td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>  
+    <div><br>Green = Available seat</div>
+    <div>Red = Reserved seat </div>
+</div>
+{% endblock content %}
