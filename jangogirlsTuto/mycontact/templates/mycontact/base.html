@@ -1,3 +1,14 @@
 {% load static %}
-{% block content%}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CauBurger</title>
+        <link rel="stylesheet" href="{% static 'css/cauburger.css' %}?ver=7">
+    </head>
+    <body>
+        <div class="content container">
+        {% block content%}
+        {% endblock %}
+        </div>        
+    </body>
+</html>

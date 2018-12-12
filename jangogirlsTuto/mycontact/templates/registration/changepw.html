@@ -1,0 +1,14 @@
+{% extends 'mycontact/base.html' %}
+
+{% block content %}
+    <div class="default_body">
+        <div>비밀번호 수정</div>
+        <form method="POST" class="contact-form">{% csrf_token %}
+            {{ form.as_p }}
+            <div>비밀번호 확인<input type="text"></input></div>
+            <div class="middle_align_div">
+                <button type="submit" class="submit_btn edit_pw_btn">비밀번호 수정</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

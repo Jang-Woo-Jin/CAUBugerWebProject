@@ -1,25 +1,25 @@
 from django import forms
 
-from .models import User
+from django.contrib.auth.models import User
 
 class LoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('userId', 'userPw')
+        fields = ('email', 'password')
 
 class SignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('userName', 'userId', 'userPw')
+        fields = ('username', 'email', 'password')
 
 class SearchPWForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('userId',)
+        fields = ('email',)
 
 class ChangePWForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('userPw',)
+        fields = ('password',)
 

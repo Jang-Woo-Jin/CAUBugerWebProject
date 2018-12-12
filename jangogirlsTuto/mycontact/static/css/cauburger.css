@@ -1,0 +1,30 @@
+.default_body {
+  position: relative;
+  width: 330px;
+  border: 2px solid black;
+  border-radius: 12px;
+  margin: 0px auto;
+  margin-top: 10%;
+  vertical-align: middle;
+  padding: 20px 20px 20px 20px;
+}
+.middle_align_div {
+    margin-top: 30px;
+    text-align: center;  
+}
+.submit_btn {
+    background: rgb(150, 150, 150);
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 7px;
+    margin-left: 10px;
+    margin-top: 10px;
+    align-self: center;
+  }
+  
+.edit_pw_btn {
+    width: 40%;
+}
+.login_btn, .signup_btn{
+    width: 30%;
+}

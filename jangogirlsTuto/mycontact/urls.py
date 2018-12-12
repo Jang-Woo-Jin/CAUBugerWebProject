@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -7,8 +8,10 @@ urlpatterns = [
     path('order/', views.order, name='order'),
     path('seats/', views.seats, name='seats'),
     path('notice/', views.notice, name='notice'),
-    path('login/', views.login, name='login'),
+    #path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
     path('searchpw/', views.searchpw, name='searchpw'),
     path('changepw/', views.changepw, name='changepw'),
+    
+    url('^', include('django.contrib.auth.urls')),
 ]

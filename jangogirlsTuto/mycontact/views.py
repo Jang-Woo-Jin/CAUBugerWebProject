@@ -4,13 +4,15 @@ from django.shortcuts import redirect
 
 from .models import User, Menu, Seat, Order, Notice
 from .forms import LoginForm, SignupForm, SearchPWForm, ChangePWForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 
 #Main Page
 def index(request):
     template = loader.get_template('mycontact/index.html')
     context = {}
     return HttpResponse(template.render(context, request))
-
+    
 #Introduction Page
 def introduction(request):
     template = loader.get_template('mycontact/introduction.html')
@@ -47,23 +49,6 @@ def notice(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Login Page
-def login(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('index')
-    else:
-        form = LoginForm()
-
-    template = loader.get_template('mycontact/login.html')
-    context = {
-        'form' : form
-    }
-    return HttpResponse(template.render(context, request))
-
 #Signup Page
 def signup(request):
     if request.method == "POST":
@@ -75,7 +60,7 @@ def signup(request):
     else:
         form = SignupForm()
 
-    template = loader.get_template('mycontact/signup.html')
+    template = loader.get_template('registration/signup.html')
     context = {
         'form' : form
     }
@@ -86,13 +71,13 @@ def searchpw(request):
     if request.method == "POST":
         form = SearchPWForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
+            
+
             return redirect('index')
     else:
         form = SearchPWForm()
 
-    template = loader.get_template('mycontact/searchpw.html')
+    template = loader.get_template('registration/searchpw.html')
     context = {
         'form' : form
     }
@@ -109,7 +94,7 @@ def changepw(request):
     else:
         form = ChangePWForm()
 
-    template = loader.get_template('mycontact/changepw.html')
+    template = loader.get_template('registration/changepw.html')
     context = {
         'form' : form
     }
