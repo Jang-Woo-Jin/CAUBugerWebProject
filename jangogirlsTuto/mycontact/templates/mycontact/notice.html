@@ -1,3 +1,40 @@
-{% block content %}
+{% extends 'mycontact/base.html' %}
 
+{% block content %}
+<style>
+    td {
+        text-align: center;
+    }
+</style>
+        <table class = "table table-striped">
+            <thread>
+                <tr>
+                    <th>제목</th>
+                    <th width="200">날짜</th>
+                    <th width="100">조회수</th>
+                </tr>
+            </thread>
+            {% for notice in notices %}
+            <tr>
+                <td>
+                    <a href="{% url 'notice specific' pk=notice.pk %}">
+                        {{ notice.noticeName }}
+                    </a>
+                </td>
+                <td>{{ notice.noticeTime }}</td>
+                <td>{{ notice.noticeCount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+    <ul>
+        {% for i in listNum %}
+        <li><a href="{% url 'notice' listnum=i %}">{{i}}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
+
+{% block jsblock %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../../static/js/bootstrap.js"></script>
+{% endblock jsblock %}

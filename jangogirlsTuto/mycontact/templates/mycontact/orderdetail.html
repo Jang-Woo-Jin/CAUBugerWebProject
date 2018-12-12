@@ -1,0 +1,19 @@
+{% extends 'mycontact/base.html' %}
+{% block content %}
+    <table class = "table table-striped">
+        <tr>
+            <th>{{ order.orderId }}</th>
+            <th width="400">{{ order.orderTime }}</th>
+        </tr>
+
+      <tr>
+        <td colspan='3'>{{ order.menuId }}</th>
+      </tr>
+
+  </table>
+{% endblock content %}
+
+{% block jsblock %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../../static/js/bootstrap.js"></script>
+{% endblock jsblock %}

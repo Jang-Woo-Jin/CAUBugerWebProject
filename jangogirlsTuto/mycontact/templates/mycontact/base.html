@@ -2,13 +2,58 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CauBurger</title>
-        <link rel="stylesheet" href="{% static 'css/cauburger.css' %}?ver=12">
+		<meta charset="utf-8" />
+		<meta name = "viewport" content = "width=device-width, initial-scale=1">
+		<link rel = "stylesheet" type="text/css" href="/static/css/style.css?ver=2">
+		<link rel = "stylesheet" type="text/css" href="/static/css/cauburger.css">
+		<link rel = "stylesheet" type="text/css" href="/static/css/bootstrap.css">
+        <title>CAU BURGER</title>
     </head>
     <body>
-        <div class="content container">
-        {% block content%}
-        {% endblock %}
-        </div>        
+		<div class = "frame">
+			<div class= "header">
+				<div class = "logo">
+					<a class="main" href = "{% url 'index' %}"><img src="/static/img/caulogo.jpg" width = "200" height = "100"></a>
+				</div>
+				<div class= "login">
+				{% if user.is_active %}
+				<a class="main" href = "{% url 'logout' %}"> <img src="/static/img/btnlogout.png" width = "70"; height="30"></a>				
+				{% else %}
+					<a class="main" href = "{% url 'login' %}"> <img src="/static/img/btnlogin.png" width = "70"; height="30"></a>
+				{% endif %}
+				</div>
+				<div class = "banner">
+					<div class = "introduction" style="float:left">
+						<a class="main" href = "{% url 'introduction' %}">Introduction</a>
+					</div>
+					<div class = "order" style="float:left">
+						<a class="main" href = "{% url 'order' listnum=1%}">Order</a>
+					</div>
+					<div class = "seats" style="float:left">
+						<a class="main" href = "{% url 'seats' %}">Seats</a>
+					</div>
+					<div class = "notice" style="float:left">
+						<a class="main" href = "{% url 'notice' listnum=1 %}">Notice</a>
+					</div>
+				</div>	
+			</div>
+			<div class = "container">
+				{% block content %}
+				{% endblock content %}
+			</div>
+			<div class = "footer">
+				<div class = "facebook">
+					<a class="main" href = "https://www.facebook.com/pages/%EC%A4%91%EC%95%99%EB%8C%80%ED%95%99%EA%B5%90-%EC%B9%B4%EC%9A%B0%EB%B2%84%EA%B1%B0/204423602960065" 
+					target="_blank"><img src="/static/img/CAUfacebook.jpg" width = "120" height = "40"></a>
+				</div>
+				<div class = "bot_banner">
+					<p class="addr">&copy;2018 Chung-Ang Univ.&nbsp;&nbsp;&nbsp;&nbsp;
+					서울시 동작구 흑석로 84&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;Web Programming</p>
+				</div>
+			</div>
+		</div>
+		{% block jsblock %}
+		{% endblock jsblock %}
     </body>
 </html>

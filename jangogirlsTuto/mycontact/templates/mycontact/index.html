@@ -1,10 +1,5 @@
 {% extends 'mycontact/base.html' %}
 
 {% block content %}
-    {% if user.is_active %}
-        <h2> Welcome, {{user.username}} </h2>
-        <a href="{% url 'logout' %}">로그아웃</a>>
-    {% else %}
-        <h2> Plz login </h2>
-    {% endif %}
+    <img class = "mainview" src="/static/img/CAUburger.jpg" height="450">
 {% endblock %}

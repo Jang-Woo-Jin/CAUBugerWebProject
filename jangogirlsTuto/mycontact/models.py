@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.conf import settings
 class User(models.Model):
     userId = models.CharField(max_length=200, primary_key=True)
     userPw = models.CharField(max_length=200)
@@ -34,25 +34,29 @@ class Seat(models.Model):
 
 class Order(models.Model):
     orderId = models.IntegerField(primary_key=True)
-    userId = models.ForeignKey(User, on_delete=models.CASCADE)
-    menuId = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    menuId = models.CharField(max_length=2000)
     isDone = models.BooleanField()
-    createDate = models.DateTimeField(
-            default=timezone.now)
+    orderTime = models.DateTimeField(default=timezone.now)
+
     def publish(self):
         self.save()
 
     def __str__(self):
-        return self.orderId
+        return str(self.orderId)
 
 class Notice(models.Model):
     noticeName = models.CharField(max_length=200)
-    noticeWriter = models.ForeignKey(User, on_delete=models.CASCADE)
-    noticeContent = models.CharField(max_length=2000)
+    noticeContent = models.TextField()
     noticeCount = models.IntegerField()
     noticeTime = models.DateTimeField(default=timezone.now)
     def publish(self):
         self.save()
 
-    def __str__(self):
+    def __str__(self):       
         return self.noticeName
+
+    @property
+    def update_counter(self):
+        self.noticeCount = self.noticeCount + 1
+        self.save()

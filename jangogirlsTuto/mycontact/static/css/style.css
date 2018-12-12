@@ -1,0 +1,96 @@
+.frame{
+	font:Arial, Helvetica, sans-serif;
+	width:100%;
+	margin: 0 auto;
+}
+
+.header{
+	height:100px;
+	text-align: left;
+	margin-bottom:20px;
+	
+}
+
+.logo{
+	float:left;
+	padding: 0 8px;
+}
+
+.login{
+	position:relative;
+	float:right;
+	top:60px;
+}
+
+.banner{
+	background-image:url("/static/img/banner_background.JPG");
+	position:relative;
+	top:100px;
+	height:50px;
+	padding-top:10px;
+	padding-bottom:10px;
+	color:white;
+	font-size:24px;
+	width:100%;
+	text-align:center;
+}
+.introduction{
+	position:relative;
+}
+
+.order{
+	position:relative;
+	margin-left:200px;
+}
+.seats{
+	position:relative;
+	margin-left:200px;
+}
+
+.notice{
+	position:relative;
+	margin-left:200px;
+}
+
+.container{
+	position:relative;
+	top:50px;	
+}
+
+.mainview{
+	display:block;
+	position:relative;
+	top:10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.footer{
+	position:relative;
+	margin-top:70px;
+	float:bottom;
+}
+.facebook{
+	position:relative;
+	float:right;
+	padding-top:10px;
+}
+.bot_banner{
+	border-top: 1px solid;
+	border-top-color:gray;
+	position:relatvie;
+	padding-top:0px;
+}
+p.addr{
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	
+}
+a.main {
+	color:white;
+	text-decoration:none;
+}
+a.main:hover{
+	color:#DDDDDD;
+}

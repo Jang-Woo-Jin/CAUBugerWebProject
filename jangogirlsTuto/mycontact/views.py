@@ -41,11 +41,21 @@ def introduction(request):
     return HttpResponse(template.render(context, request))
 
 #Order Page
-def order(request):
+def order(request, listnum):
     template = loader.get_template('mycontact/order.html')
     orders = Order.objects.order_by('orderId')
+    orderList = list()
+    listNum = list()
+    i = 0
+    for order in orders:
+        if i % 10 == listnum - 1:
+            orderList.append(order)
+        if i % 10 == 0:
+            listNum.append((int)(i / 10 + 1))   
+        i = i + 1
     context = {
-        'orders' : orders
+        'orders' : orderList,
+        'listNum' : listNum
     }
     return HttpResponse(template.render(context, request))
 
@@ -72,11 +82,39 @@ def seats(request):
     return HttpResponse(template.render(context, request))
 
 #Notice Page
-def notice(request):
+def notice(request, listnum):
     template = loader.get_template('mycontact/notice.html')
-    contacts = Notice.objects.order_by('pk')
+    notices = Notice.objects.order_by('pk')
+    noticeList = list()
+    listNum = list()
+    i = 0
+    for notice in notices:
+        if i % 10 == listnum - 1:
+            noticeList.append(notice)
+        if i % 10 == 0:
+            listNum.append((int)(i / 10 + 1))
+        i = i + 1
     context = {
-        'contacts' : contacts
+        'notices' : noticeList,
+        'listNum' : listNum
+    }
+    return HttpResponse(template.render(context, request))
+
+#Notice Detail Page
+def noticedetail(request, pk):
+    template = loader.get_template('mycontact/noticedetail.html')
+    notice = Notice.objects.filter(pk=pk)
+    context = {
+        'notice' : notice[0],
+    }
+    return HttpResponse(template.render(context, request))
+
+#Order Detail Page
+def orderdetail(request, pk):
+    template = loader.get_template('mycontact/orderdetail.html')
+    order = Order.objects.filter(pk=pk)
+    context = {
+        'order' : order[0],
     }
     return HttpResponse(template.render(context, request))
 

@@ -1,0 +1,21 @@
+{% extends 'mycontact/base.html' %}
+{% block content %}
+    {{ notice.update_counter }}
+    <table class = "table table-striped">
+        <tr>
+            <th >{{ notice.noticeName }}</th>
+            <th width="400">{{ notice.noticeTime }}</th>
+            <th width="100">{{ notice.noticeCount }}</th>
+        </tr>
+
+      <tr>
+        <td colspan='3'>{{ notice.noticeContent }}</th>
+      </tr>
+
+  </table>
+{% endblock content %}
+
+{% block jsblock %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../../static/js/bootstrap.js"></script>
+{% endblock jsblock %}
