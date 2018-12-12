@@ -13,29 +13,31 @@
     }
     #content {
         border: 2px solid #444444;
+        margin: 0px auto;
         width:362px;
     }
 </style>
-
-<div id="content">
-    <table style="table-layout:fixed">
-        {% for rows in seats %}
-        <tr>
-            {% for seat in rows %}
-            {% if seat.isReal %}
-                {% if seat.isFull %}
-                    <td  bgcolor="#FF0000">{{ seat.seatNo }}</td>
+<div>
+    <div id="content">
+        <table style="table-layout:fixed">
+            {% for rows in seats %}
+            <tr>
+                {% for seat in rows %}
+                {% if seat.isReal %}
+                    {% if seat.isFull %}
+                        <td  bgcolor="#FF0000">{{ seat.seatNo }}</td>
+                    {% else %}
+                        <td  bgcolor="#00FF00">{{ seat.seatNo }}</td> 
+                    {% endif %}
                 {% else %}
-                    <td  bgcolor="#00FF00">{{ seat.seatNo }}</td> 
+                    <td></td>
                 {% endif %}
-            {% else %}
-                <td></td>
-            {% endif %}
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>  
-    <div><br>Green = Available seat</div>
-    <div>Red = Reserved seat </div>
+        </table>  
+        <div><br>Green = Available seat</div>
+        <div>Red = Reserved seat </div>
+    </div>
 </div>
 {% endblock content %}

@@ -7,15 +7,12 @@ reated by https://www.gitignore.io/api/git,code,venv,django,python
 .vscode/
 tsconfig.json
 jsconfig.json
-## DB Sqlite
-db.splite3
 ### Django ###
 *.log
 *.pot
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

@@ -30,7 +30,7 @@ class Seat(models.Model):
         self.save()
 
     def __str__(self):
-        return self.seatNo
+        return str(self.seatNo)
 
 class Order(models.Model):
     orderId = models.IntegerField(primary_key=True)
