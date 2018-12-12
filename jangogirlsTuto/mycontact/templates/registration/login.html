@@ -11,14 +11,23 @@
         {% endif %}
 
         <div class="default_body">
-            <div>CAU Burger에 오신것을 환영합니다</div>
+            <div class="block_title">CAU Burger에 오신것을 환영합니다</div>
             <form method="POST" class="contact-form">{% csrf_token %}
-                {{ form.as_p }}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.username.errors }}
+                    <label for="username">ID :</label>
+                    {{ form.username }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.password.errors }}
+                    <label for="password">Passwrod</label>
+                    {{ form.password }}
+                </div>
                 <div class="middle_align_div"><button type="submit" class="login_btn submit_btn">로그인</button></div>
             </form>
             <div class="middle_align_div">
                 <a href="{% url 'signup' %}">회원가입</a>
-                <a href="{% url 'searchpw' %}">비밀번호 찾기</a>
             </div>
         </div>
     {% endif %}

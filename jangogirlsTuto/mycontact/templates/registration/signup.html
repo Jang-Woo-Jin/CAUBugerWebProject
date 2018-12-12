@@ -2,12 +2,12 @@
 
 {% block content %}
     <div class="default_body">
-        <div>회원가입</div>
+        <div class ="block_title">회원가입</div>
         <form method="POST" class="contact-form">{% csrf_token %}
             {{ form.non_field_errors }}
             <div class="fieldWrapper">
                 {{ form.username.errors }}
-                <label for="username">이름 :</label>
+                <label for="username">ID :</label>
                 {{ form.username }}
             </div>
             <div class="fieldWrapper">
@@ -17,10 +17,9 @@
             </div>
             <div class="fieldWrapper">
                 {{ form.password.errors }}
-                <label for="password">비밀번호</label>
+                <label for="password">Passwrod : </label>
                 {{ form.password }}
             </div>
-            <div>비밀번호 확인<input type="text"></input></div>
             <div class="middle_align_div">
                 <button type="submit" class="submit_btn signup_btn">회원가입</button>
             </div>

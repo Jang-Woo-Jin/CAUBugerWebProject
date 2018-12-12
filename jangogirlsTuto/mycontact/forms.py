@@ -2,12 +2,6 @@ from django import forms
 
 from django.contrib.auth.models import User
 
-class LoginForm(forms.ModelForm):
-
-    class Meta:
-        model = User
-        fields = ('email', 'password')
-
 class SignupForm(forms.ModelForm):
     class Meta:
         model = User
@@ -16,7 +10,7 @@ class SignupForm(forms.ModelForm):
 class SearchPWForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('username',)
 
 class ChangePWForm(forms.ModelForm):
     class Meta:

@@ -1,9 +1,13 @@
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import User, Menu, Seat, Order, Notice
-from .forms import LoginForm, SignupForm, SearchPWForm, ChangePWForm
+from .forms import SignupForm, SearchPWForm, ChangePWForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 
@@ -54,8 +58,8 @@ def signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
             return redirect('index')
     else:
         form = SignupForm()
@@ -66,36 +70,20 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Search PW Page
-def searchpw(request):
-    if request.method == "POST":
-        form = SearchPWForm(request.POST)
-        if form.is_valid():
-            
-
-            return redirect('index')
-    else:
-        form = SearchPWForm()
-
-    template = loader.get_template('registration/searchpw.html')
-    context = {
-        'form' : form
-    }
-    return HttpResponse(template.render(context, request))
-
-#Change PW Page
 def changepw(request):
-    if request.method == "POST":
-        form = ChangePWForm(request.POST)
+    user = request.user
+    isError = False
+    form = PasswordChangeForm(user, request.POST)
+    if request.method == 'POST':
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
+            changed_user = form.save()
+            update_session_auth_hash(request, changed_user)  # Important!
             return redirect('index')
+        else:
+            messages.error(request, 'Please correct the error below.')
+            isError = True
+            return render(request, 'registration/changepw.html', {'user' : user, 'form': form, "isError" : isError})
     else:
-        form = ChangePWForm()
-
-    template = loader.get_template('registration/changepw.html')
-    context = {
-        'form' : form
-    }
-    return HttpResponse(template.render(context, request))
+        form = PasswordChangeForm(request.user)
+    
+    return render(request, 'registration/changepw.html', {'user' : user, 'form': form})
