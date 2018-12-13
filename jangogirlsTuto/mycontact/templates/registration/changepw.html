@@ -9,12 +9,12 @@
         {% endif %}
         <form method="POST" class="contact-form">{% csrf_token %}
             <div class="form-row">
-                <label for="id_old_password">Old password : </label> <input type="password" name="old_password" autofocus required id="id_old_password">
+                <label for="id_old_password">Old password : &nbsp</label> <input type="password" name="old_password" autofocus required id="id_old_password">
             </div>
             <div class="form-row">
-                <label for="id_new_password1">New password : </label><input type="password" name="new_password1" required id="id_new_password1">
+                <label for="id_new_password1">New password : &nbsp</label><input type="password" name="new_password1" required id="id_new_password1">
             <div class="form-row">
-                <label for="id_new_password2">Check new PW : </label><input type="password" name="new_password2" required id="id_new_password2">                </div>
+                <label for="id_new_password2">Check new PW : &nbsp</label><input type="password" name="new_password2" required id="id_new_password2">                </div>
             </div>
             <div class="middle_align_div">
                 <button type="submit" class="submit_btn edit_pw_btn">비밀번호 수정</button>

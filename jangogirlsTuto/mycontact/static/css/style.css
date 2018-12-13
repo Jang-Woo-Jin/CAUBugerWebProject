@@ -21,7 +21,10 @@
 	float:right;
 	top:60px;
 }
-
+.loginArea{
+	float:left;
+	margin-bottom: 10px;
+}
 .banner{
 	background-image:url("/static/img/banner_background.JPG");
 	position:relative;
